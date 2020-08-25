@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "o:\\Code\\Machine Learning\\flask-prediction-app\\env\\Scripts\\python.exe",
+    "terminal.integrated.shellArgs.windows": ["-ExecutionPolicy", "Bypass"]
+}
