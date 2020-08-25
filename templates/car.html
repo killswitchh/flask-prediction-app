@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<h1> Car Page</h1>
+<div id="car-input-form-outer">
+    <form method="POST" action = "">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend> Car Details</legend>
+            <div id="car-price">
+                {{ form.price.label }}
+                {% if form.price.errors %}
+                {{ form.price() }}
+                <div id = "errors">
+                    {% for error in form.price.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.price() }}
+                {% endif %}
+            </div>
+            <div id="car-maintenance">
+                {{ form.maintenance.label }}
+                {% if form.maintenance.errors %}
+                {{ form.maintenance() }}
+                <div id = "errors">
+                    {% for error in form.maintenance.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.maintenance() }}
+                {% endif %}
+            </div>
+            <div id="car-capacity">
+                {{ form.capacity.label }}
+                {% if form.capacity.errors %}
+                {{ form.capacity() }}
+                <div id = "errors">
+                    {% for error in form.capacity.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.capacity() }}
+                {% endif %}
+            </div>
+            <div id="car-size_of_luggage_boot">
+                {{ form.size_of_luggage_boot.label }}
+                {% if form.size_of_luggage_boot.errors %}
+                {{ form.size_of_luggage_boot() }}
+                <div id = "errors">
+                    {% for error in form.size_of_luggage_boot.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.size_of_luggage_boot() }}
+                {% endif %}
+            </div>
+            <div id="car-safety">
+                {{ form.safety.label }}
+                {% if form.safety.errors %}
+                {{ form.safety() }}
+                <div id = "errors">
+                    {% for error in form.safety.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.safety() }}
+                {% endif %}
+            </div>
+            <div id="car-no_of_doors">
+                {{ form.no_of_doors.label }}
+                {% if form.no_of_doors.errors %}
+                {{ form.no_of_doors() }}
+                <div id = "errors">
+                    {% for error in form.no_of_doors.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.no_of_doors() }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div >
+            {{ form.submit() }}
+        </div>
+    </form>
+</div>
+{% endblock content %}
