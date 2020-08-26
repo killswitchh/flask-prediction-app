@@ -11,6 +11,21 @@
     {% endif %}
 </head>
 <body>
+    <a href="{{ url_for('car') }}"> 
+        <button> 
+            Car Classifier
+        </button> 
+    </a>
+    <a href="{{ url_for('titanic') }}"> 
+        <button> 
+            Titanic Classifier
+        </button> 
+    </a>
+    <a href="{{ url_for('home') }}"> 
+        <button> 
+            Home
+        </button> 
+    </a>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for category, message in messages %}

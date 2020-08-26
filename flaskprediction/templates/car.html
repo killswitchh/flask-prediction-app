@@ -3,7 +3,7 @@
 {% if message %}
 <h2>{{ message }}</h2>
 {% endif %}
-<h1> Car Page</h1>
+<h1> Car Prediction</h1>
 <div id="car-input-form-outer">
     <form method="POST" action = "">
         {{ form.hidden_tag() }}
@@ -92,5 +92,8 @@
             {{ form.submit() }}
         </div>
     </form>
+    {% if answer %}
+    <h2>{{ answer }}</h2>
+    {% endif %}
 </div>
 {% endblock content %}
