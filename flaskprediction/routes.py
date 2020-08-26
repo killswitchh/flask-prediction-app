@@ -13,7 +13,7 @@ def titanic():
     message = ""
     form = TitanicDetailsForm()
     if form.validate_on_submit():
-        parameter_list = [form.p_id.data , form.p_class.data,form.name.data, form.sex.data ,form.age.data,form.sibsp.data,form.parch.data,form.fare.data,form.embarked.data]
+        parameter_list = [form.p_id.data , form.p_class.data, form.sex.data ,form.age.data,form.sibsp.data,form.parch.data,form.fare.data,form.embarked.data]
         predictor = Predictor()
         print(parameter_list)
         answer = predictor.calculate_probability_titanic(parameter_list)

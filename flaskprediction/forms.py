@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField , SubmitField , StringField , DecimalField , IntegerField
+from wtforms import SelectField , SubmitField , StringField , DecimalField , IntegerField , FloatField
 from wtforms.validators import InputRequired , DataRequired , NumberRange
 
 #CAR
@@ -32,6 +32,6 @@ class TitanicDetailsForm(FlaskForm):
     age = IntegerField(label = "Passenger Age" , validators =[NumberRange(min=1, max=100) , InputRequired()])
     sibsp = IntegerField(label = "Number of Siblings / Spouse(s)" , validators =[NumberRange(min=0, max=10) , InputRequired()])
     parch = IntegerField(label = "Number of Parents / Children" , validators =[NumberRange(min=0, max=10) , InputRequired()])
-    fare = DecimalField(label="Ticket Fare", validators = [NumberRange(min=0, max=1000) , InputRequired()])
+    fare = FloatField(label="Ticket Fare", validators = [NumberRange(min=0, max=1000) , InputRequired()])
     embarked = SelectField(label="Embarked from", choices=EMBARKED_PORT , validators = [InputRequired()])
     submit = SubmitField("Predict")
