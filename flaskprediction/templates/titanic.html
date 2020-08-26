@@ -1,4 +1,138 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1> Titanic Page</h1>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<h1> Titanic Prediction</h1>
+<div id="titanic-input-form-outer">
+    <form method="POST" action = "">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend> Titanic Passenger Details</legend>
+            <div id="titanic-pid">
+                {{ form.p_id.label }}
+                {% if form.p_id.errors %}
+                {{ form.p_id() }}
+                <div id = "errors">
+                    {% for error in form.p_id.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.p_id() }}
+                {% endif %}
+            </div>
+            <div id="titanic-pclass">
+                {{ form.p_class.label }}
+                {% if form.p_class.errors %}
+                {{ form.p_class() }}
+                <div id = "errors">
+                    {% for error in form.p_class.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.p_class() }}
+                {% endif %}
+            </div>
+            <div id="titanic-name">
+                {{ form.name.label }}
+                {% if form.name.errors %}
+                {{ form.name() }}
+                <div id = "errors">
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.name() }}
+                {% endif %}
+            </div>
+            <div id="titanic-sex">
+                {{ form.sex.label }}
+                {% if form.sex.errors %}
+                {{ form.sex() }}
+                <div id = "errors">
+                    {% for error in form.sex.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.sex() }}
+                {% endif %}
+            </div>
+            <div id="titanic-age">
+                {{ form.age.label }}
+                {% if form.age.errors %}
+                {{ form.age() }}
+                <div id = "errors">
+                    {% for error in form.age.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.age() }}
+                {% endif %}
+            </div>
+            <div id="titanic-sibsp">
+                {{ form.sibsp.label }}
+                {% if form.sibsp.errors %}
+                {{ form.sibsp() }}
+                <div id = "errors">
+                    {% for error in form.sibsp.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.sibsp() }}
+                {% endif %}
+            </div>
+            <div id="titanic-parch">
+                {{ form.parch.label }}
+                {% if form.parch.errors %}
+                {{ form.parch() }}
+                <div id = "errors">
+                    {% for error in form.parch.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.parch() }}
+                {% endif %}
+            </div>
+            <div id="titanic-fare">
+                {{ form.fare.label }}
+                {% if form.fare.errors %}
+                {{ form.fare() }}
+                <div id = "errors">
+                    {% for error in form.fare.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.fare() }}
+                {% endif %}
+            </div>
+            <div id="titanic-embarked">
+                {{ form.embarked.label }}
+                {% if form.embarked.errors %}
+                {{ form.embarked() }}
+                <div id = "errors">
+                    {% for error in form.embarked.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.embarked() }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div >
+            {{ form.submit() }}
+        </div>
+    </form>
+    {% if answer %}
+    <h2>{{ answer }}</h2>
+    {% endif %}
+</div>
 {% endblock content %}
