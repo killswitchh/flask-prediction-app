@@ -20,7 +20,7 @@ def titanic():
         message = ""
         return render_template('titanic.html' , title='Titanic Classifier' , form = form , message= message,answer = answer)
     else:
-        message = "Select All Values"
+        message = "Enter Passenger Details"
     return render_template('titanic.html' , title='Titanic Classifier' , form = form , message= message)
 
 @app.route("/car" , methods=['GET' , 'POST'])
