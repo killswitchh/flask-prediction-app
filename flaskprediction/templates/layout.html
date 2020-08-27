@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
     {% if title %}
         <title>Flask Classifier - {{ title }}</title>
     {% else %}
@@ -11,21 +13,6 @@
     {% endif %}
 </head>
 <body>
-    <a href="{{ url_for('car') }}"> 
-        <button> 
-            Car Classifier
-        </button> 
-    </a>
-    <a href="{{ url_for('titanic') }}"> 
-        <button> 
-            Titanic Classifier
-        </button> 
-    </a>
-    <a href="{{ url_for('home') }}"> 
-        <button> 
-            Home
-        </button> 
-    </a>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for category, message in messages %}

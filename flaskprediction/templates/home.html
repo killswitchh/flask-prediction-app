@@ -1,5 +1,13 @@
-<h1> Home Page</h1>
 {% extends "layout.html" %}
 {% block content %}
-<h4> Click a Button</h4>
+
+<div class="multi-button">
+    <button type = "button" onclick="window.location.href = '{{ url_for('car') }}';"> 
+        Car Classifier
+    </button>
+    <button type = "button" onclick="window.location.href = '{{ url_for('titanic') }}';"> 
+        Titanic Classifier
+    </button>
+</div>
+    
 {% endblock content %}

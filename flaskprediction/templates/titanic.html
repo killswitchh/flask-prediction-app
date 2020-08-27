@@ -4,131 +4,190 @@
 <h2>{{ message }}</h2>
 {% endif %}
 <h1> Titanic Prediction</h1>
+
 <div id="titanic-input-form-outer">
     <form method="POST" action = "">
         {{ form.hidden_tag() }}
         <fieldset>
             <legend> Titanic Passenger Details</legend>
-            <div id="titanic-pid">
-                {{ form.p_id.label }}
+            <div id="titanic-p_id"  class = "flexbox">
+                <div class="label">
+                    {{ form.p_id.label }}
+                </div>
+                <div class="field">
+                    {{ form.p_id(class = "field") }}
+                </div>
+
                 {% if form.p_id.errors %}
-                {{ form.p_id() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.p_id.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.p_id() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-pclass">
-                {{ form.p_class.label }}
+            
+            <div id="titanic-p_class"  class = "flexbox">
+                <div class="label">
+                    {{ form.p_class.label }}
+                </div>
+                <div class="field">
+                    {{ form.p_class(class = "field") }}
+                </div>
+
                 {% if form.p_class.errors %}
-                {{ form.p_class() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.p_class.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.p_class() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-name">
-                {{ form.name.label }}
+
+            <div id="titanic-name"  class = "flexbox">
+                <div class="label">
+                    {{ form.name.label }}
+                </div>
+                <div class="field">
+                    {{ form.name(class = "field") }}
+                </div>
+
                 {% if form.name.errors %}
-                {{ form.name() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.name.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.name() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-sex">
-                {{ form.sex.label }}
+
+            <div id="titanic-sex"   class = "flexbox">
+                <div class="label">
+                    {{ form.sex.label }}
+                </div>
+                <div class="field">
+                    {{ form.sex(class = "field") }}
+                </div>
+
                 {% if form.sex.errors %}
-                {{ form.sex() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.sex.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.sex() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-age">
-                {{ form.age.label }}
+
+            <div id="titanic-age"  class = "flexbox">
+                <div class="label">
+                    {{ form.age.label }}
+                </div>
+                <div class="field">
+                    {{ form.age(class = "field") }}
+                </div>
+
                 {% if form.age.errors %}
-                {{ form.age() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.age.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.age() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-sibsp">
-                {{ form.sibsp.label }}
+
+            <div id="titanic-sibsp"  class = "flexbox">
+                <div class="label">
+                    {{ form.sibsp.label }}
+                </div>
+                <div class="field">
+                    {{ form.sibsp(class = "field") }}
+                </div>
+
                 {% if form.sibsp.errors %}
-                {{ form.sibsp() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.sibsp.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.sibsp() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-parch">
-                {{ form.parch.label }}
+
+            <div id="titanic-parch"  class = "flexbox">
+                <div class="label">
+                    {{ form.parch.label }}
+                </div>
+                <div class="field">
+                    {{ form.parch(class = "field") }}
+                </div>
+
                 {% if form.parch.errors %}
-                {{ form.parch() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.parch.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.parch() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-fare">
-                {{ form.fare.label }}
+
+            <div id="titanic-fare"   class = "flexbox">
+                <div class="label">
+                    {{ form.fare.label }}
+                </div>
+                <div class="field">
+                    {{ form.fare(class = "field") }}
+                </div>
+
                 {% if form.fare.errors %}
-                {{ form.fare() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.fare.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.fare() }}
+
                 {% endif %}
             </div>
-            <div id="titanic-embarked">
-                {{ form.embarked.label }}
+
+            <div id="titanic-embarked"  class = "flexbox">
+                 <div class="label">
+                    {{ form.embarked.label }}
+                </div>
+                <div class="field">
+                    {{ form.embarked(class = "field") }}
+                </div>
+
                 {% if form.embarked.errors %}
-                {{ form.embarked() }}
-                <div id = "errors">
+
+                <div id = "errors"class = "errors">
                     {% for error in form.embarked.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.embarked() }}
+
                 {% endif %}
             </div>
+
         </fieldset>
-        <div >
-            {{ form.submit() }}
+        <div class="multi-button">
+            <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+                Home
+            </button> 
+            {{ form.submit(class="button") }}
+
         </div>
     </form>
     {% if answer %}

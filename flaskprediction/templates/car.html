@@ -1,95 +1,123 @@
 {% extends "layout.html" %}
 {% block content %}
+
+
+<h1> Car Prediction</h1>
 {% if message %}
 <h2>{{ message }}</h2>
 {% endif %}
-<h1> Car Prediction</h1>
 <div id="car-input-form-outer">
     <form method="POST" action = "">
         {{ form.hidden_tag() }}
         <fieldset>
             <legend> Car Details</legend>
-            <div id="car-price">
-                {{ form.price.label }}
-                {% if form.price.errors %}
-                {{ form.price() }}
-                <div id = "errors">
+                
+            <div id="car-price" class = "flexbox">
+                <div class="label">
+                    {{ form.price.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.price() }}
+                </div>
+
+                {% if form.price.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.price.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.price() }}
                 {% endif %}
             </div>
-            <div id="car-maintenance">
-                {{ form.maintenance.label }}
-                {% if form.maintenance.errors %}
-                {{ form.maintenance() }}
-                <div id = "errors">
+            <div id="car-maintenance" class = "flexbox">
+                <div class="label">
+                    {{ form.maintenance.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.maintenance() }}
+                </div>
+                
+                {% if form.maintenance.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.maintenance.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.maintenance() }}
                 {% endif %}
             </div>
-            <div id="car-capacity">
-                {{ form.capacity.label }}
-                {% if form.capacity.errors %}
-                {{ form.capacity() }}
-                <div id = "errors">
+            <div id="car-capacity" class = "flexbox">
+                <div class="label">
+                    {{ form.capacity.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.capacity() }}
+                </div>
+                
+                {% if form.capacity.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.capacity.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.capacity() }}
                 {% endif %}
             </div>
-            <div id="car-size_of_luggage_boot">
-                {{ form.size_of_luggage_boot.label }}
-                {% if form.size_of_luggage_boot.errors %}
-                {{ form.size_of_luggage_boot() }}
-                <div id = "errors">
+            <div id="car-size_of_luggage_boot" class = "flexbox">
+                <div class="label">
+                    {{ form.size_of_luggage_boot.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.size_of_luggage_boot() }}
+                </div>
+                
+                {% if form.size_of_luggage_boot.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.size_of_luggage_boot.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.size_of_luggage_boot() }}
                 {% endif %}
             </div>
-            <div id="car-safety">
-                {{ form.safety.label }}
-                {% if form.safety.errors %}
-                {{ form.safety() }}
-                <div id = "errors">
+            <div id="car-safety" class = "flexbox">
+                <div class="label">
+                    {{ form.safety.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.safety() }}
+                </div>
+                
+                {% if form.safety.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.safety.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.safety() }}
                 {% endif %}
             </div>
-            <div id="car-no_of_doors">
-                {{ form.no_of_doors.label }}
-                {% if form.no_of_doors.errors %}
-                {{ form.no_of_doors() }}
-                <div id = "errors">
+            <div id="car-no_of_doors" class = "flexbox">
+                <div class="label">
+                    {{ form.no_of_doors.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.no_of_doors() }}
+                </div>
+                
+                {% if form.no_of_doors.errors %}               
+                <div id = "errors" class = "errors">
                     {% for error in form.no_of_doors.errors %}
                         <span>{{ error }}</span>
                     {% endfor %}
                 </div>
-                {% else %}
-                {{ form.no_of_doors() }}
                 {% endif %}
+            
             </div>
         </fieldset>
-        <div >
-            {{ form.submit() }}
+        <div class="multi-button">
+            <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+                Home
+            </button> 
+            {{ form.submit(class="button") }}
+        
+        </div>
+            
         </div>
     </form>
     {% if answer %}
