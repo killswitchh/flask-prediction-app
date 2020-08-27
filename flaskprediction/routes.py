@@ -3,6 +3,8 @@ from flaskprediction import app
 from flaskprediction.utils.predict import Predictor
 from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm
 
+import os
+
 @app.route("/")
 @app.route("/home")
 def home():
