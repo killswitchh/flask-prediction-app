@@ -5,10 +5,10 @@
 {% endif %}
 <h1> Titanic Prediction</h1>
 
-<div id="titanic-input-form-outer">
+<div id="titanic-input-form-outer" class="form-div">
     <form method="POST" action = "">
         {{ form.hidden_tag() }}
-        <fieldset>
+        <fieldset class =  "field-set">
             <legend> Titanic Passenger Details</legend>
             <div id="titanic-p_id"  class = "flexbox">
                 <div class="label">
@@ -182,6 +182,7 @@
             </div>
 
         </fieldset>
+        <br>
         <div class="multi-button">
             <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
                 Home

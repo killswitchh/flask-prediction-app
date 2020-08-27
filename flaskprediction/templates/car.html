@@ -6,10 +6,10 @@
 {% if message %}
 <h2>{{ message }}</h2>
 {% endif %}
-<div id="car-input-form-outer">
+<div id="car-input-form-outer" class="form-div">
     <form method="POST" action = "">
         {{ form.hidden_tag() }}
-        <fieldset>
+        <fieldset class =  "field-set">
             <legend> Car Details</legend>
                 
             <div id="car-price" class = "flexbox">
@@ -110,6 +110,7 @@
             
             </div>
         </fieldset>
+        <br>
         <div class="multi-button">
             <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
                 Home
