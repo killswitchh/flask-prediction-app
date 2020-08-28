@@ -177,6 +177,7 @@ legend{
   color: black;
   transition: flex-grow var(--duration) var(--ease);
 }
+
 .answer:hover{
   flex-grow: 1;
   background-color: black;
