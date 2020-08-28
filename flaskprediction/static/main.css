@@ -164,3 +164,23 @@ legend{
     padding-left: 10%;
     width: 90%;
 }
+
+.answer{
+  align-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid black;
+  height: 100%;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  color: black;
+  transition: flex-grow var(--duration) var(--ease);
+}
+.answer:hover{
+  flex-grow: 1;
+  background-color: black;
+  color: white;
+  height: 100%;
+  width: 100%;
+}

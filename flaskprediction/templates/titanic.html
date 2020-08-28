@@ -190,9 +190,13 @@
             {{ form.submit(class="button") }}
 
         </div>
+        <br>
+        {% if answer %}
+        <div class="answer">
+            {{ answer }}
+        </div>
+        {% endif %}
     </form>
-    {% if answer %}
-    <h2>{{ answer }}</h2>
-    {% endif %}
+
 </div>
 {% endblock content %}
