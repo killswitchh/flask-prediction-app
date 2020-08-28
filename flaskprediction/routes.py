@@ -1,9 +1,13 @@
-from flask import Flask , render_template , url_for
+from flask import Flask , render_template , url_for , send_from_directory  
 from flaskprediction import app
 from flaskprediction.utils.predict import Predictor
-from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm
+from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm
 
 import os
+
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/")
 @app.route("/home")
@@ -39,8 +43,18 @@ def car():
         message = "Select All Values"
     return render_template('car.html' , title='Car Classifier' , form = form , message= message)
 
-from flask import send_from_directory     
 
-@app.route('/favicon.ico') 
-def favicon(): 
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route("/boston" , methods=['GET' , 'POST'])
+def boston():
+    message = ""
+    form = BostonDetailsForm()
+    if form.validate_on_submit():
+        parameter_list = [form.crim.data , form.zn.data, form.chas.data ,form.nox.data,form.rm.data,form.age.data,form.dis.data,form.ptratio.data , form.black.data , form.lstat.data]
+        predictor = Predictor()
+        answer = predictor.calculate_price_boston(parameter_list)
+        message = ""
+        return render_template('boston.html' , title='Boston Regressor' , form = form , message= message,answer = answer)
+    else:
+        message = "Select All Values"
+    return render_template('boston.html' , title='boston Regressor' , form = form , message= message)

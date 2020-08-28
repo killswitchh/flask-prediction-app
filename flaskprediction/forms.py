@@ -15,6 +15,9 @@ PASSENGER_CLASS = [(1,"Class 1"),(2,"Class 2"),(3,"Class 3")]
 PASSENGER_SEX = [("male","Male"),("female" , "Female")]
 EMBARKED_PORT = [("C" , "Cherbourg") , ("Q","Queenstown") , ("S","Southampton")]
 
+#BOSTON
+CHARLES_RIVER = [(1,"Yes") , (0,"No")]
+
 class CarDetailsForm(FlaskForm):
     price = SelectField(label = "Price" , choices = PRICE , validators = [InputRequired()])
     maintenance = SelectField(label = "Maintenance Cost" , choices = MAINTENANCE_COST , validators = [InputRequired()])
@@ -34,4 +37,17 @@ class TitanicDetailsForm(FlaskForm):
     parch = IntegerField(label = "Number of Parents / Children" , validators =[NumberRange(min=0, max=10) , InputRequired()])
     fare = FloatField(label="Ticket Fare", validators = [NumberRange(min=0, max=1000) , InputRequired()])
     embarked = SelectField(label="Embarked from", choices=EMBARKED_PORT , validators = [InputRequired()])
+    submit = SubmitField("Predict")
+
+class BostonDetailsForm(FlaskForm):
+    crim = FloatField(label="Per Capita Crime rate" , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    zn = FloatField(label="Proportion of zoned residential land" , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    chas = SelectField(label = "Tract bound by charles river?" , choices = CHARLES_RIVER , validators = [InputRequired()])
+    nox = FloatField(label="Nitrogen Oxide concentration" , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    rm =FloatField(label="Avg Number of rooms per dwelling" , validators = [NumberRange(min=0, max=15) , InputRequired()])
+    age =FloatField(label="owner occupied units built prior to 1940." , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    dis = FloatField(label="Mean distance to 5 employment centers" , validators = [NumberRange(min=0, max=15) , InputRequired()])
+    ptratio = FloatField(label="pupil teacher ratio by town" , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    black = FloatField(label="proportion of blacks by town" , validators = [NumberRange(min=0, max=400) , InputRequired()])
+    lstat = FloatField(label="lower status of the population" , validators = [NumberRange(min=0, max=100) , InputRequired()])
     submit = SubmitField("Predict")

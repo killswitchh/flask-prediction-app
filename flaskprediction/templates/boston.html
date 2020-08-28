@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<h1> Boston Prediction</h1>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<div id="Boston-input-form-outer" class="form-div">
+    <form method="POST" action = "">
+        {{ form.hidden_tag() }}
+        <fieldset class =  "field-set">
+            <legend> Boston Details</legend>
+                
+            <div id="Boston-crim" class = "flexbox">
+                <div class="label">
+                    {{ form.crim.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.crim() }}
+                </div>
+
+                {% if form.crim.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.crim.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="Boston-zn" class = "flexbox">
+                <div class="label">
+                    {{ form.zn.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.zn() }}
+                </div>
+                
+                {% if form.zn.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.zn.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="Boston-chas" class = "flexbox">
+                <div class="label">
+                    {{ form.chas.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.chas() }}
+                </div>
+                
+                {% if form.chas.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.chas.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="Boston-nox" class = "flexbox">
+                <div class="label">
+                    {{ form.nox.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.nox() }}
+                </div>
+                
+                {% if form.nox.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.nox.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="Boston-rm" class = "flexbox">
+                <div class="label">
+                    {{ form.rm.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.rm() }}
+                </div>
+                
+                {% if form.rm.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.rm.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="Boston-age" class = "flexbox">
+                <div class="label">
+                    {{ form.age.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.age() }}
+                </div>
+                
+                {% if form.age.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.age.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+            </div>
+            <div id="Boston-dis" class = "flexbox">
+                <div class="label">
+                    {{ form.dis.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.dis() }}
+                </div>
+                
+                {% if form.dis.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.dis.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+            </div>
+            <div id="Boston-ptratio" class = "flexbox">
+                <div class="label">
+                    {{ form.ptratio.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.ptratio() }}
+                </div>
+                
+                {% if form.ptratio.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.ptratio.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+            </div>
+            <div id="Boston-black" class = "flexbox">
+                <div class="label">
+                    {{ form.black.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.black() }}
+                </div>
+                
+                {% if form.black.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.black.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+            </div>
+            <div id="Boston-lstat" class = "flexbox">
+                <div class="label">
+                    {{ form.lstat.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.lstat() }}
+                </div>
+                
+                {% if form.lstat.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.lstat.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+            </div>
+        </fieldset>
+        <br>
+        <div class="multi-button">
+            <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+                Home
+            </button> 
+            {{ form.submit(class="button") }}
+        
+        </div>
+            
+        </div>
+    </form>
+    {% if answer %}
+    <h2>{{ answer }}</h2>
+    {% endif %}
+</div>
+{% endblock content %}

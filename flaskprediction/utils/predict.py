@@ -32,7 +32,7 @@ class Predictor:
         return np.array([reorganized_array])
 
     def calculate_probability_car(self,parameter_list):
-        file_path = os.path.join(self.folder_path , "car.joblib")
+        file_path = os.path.join(self.folder_path , "data","car.joblib")
         classifier = load(file_path)
         numpy_array = np.array([parameter_list])
         new_prediction = classifier.predict(numpy_array)
@@ -40,9 +40,21 @@ class Predictor:
         return answer
 
     def calculate_probability_titanic(self, parameter_list):
-        file_path = os.path.join(self.folder_path , "titanic.joblib")
+        file_path = os.path.join(self.folder_path , "data","titanic.joblib")
         classifier = load(file_path)
         numpy_array = self.create_titanic_numpy_array(parameter_list)
         new_prediction = classifier.predict(numpy_array)
         answer = "The Passenger will Survive" if new_prediction[0] == 1 else "The Passenger will not Survive"
         return answer
+    
+    def calculate_price_boston(self, parameter_list):
+        file_path = os.path.join(self.folder_path , "data","boston.joblib")
+        regressor = load(file_path)
+        organized_array = list(map(float,parameter_list))
+        print('here' , organized_array)
+        numpy_array = np.array([organized_array])
+        new_prediction = regressor.predict(numpy_array)
+        answer = "median value of owner-occupied homes in $1000s :" + str(new_prediction[0])
+        return answer
+
+
