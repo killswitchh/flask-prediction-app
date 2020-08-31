@@ -51,10 +51,20 @@ class Predictor:
         file_path = os.path.join(self.folder_path , "data","boston.joblib")
         regressor = load(file_path)
         organized_array = list(map(float,parameter_list))
-        print('here' , organized_array)
         numpy_array = np.array([organized_array])
         new_prediction = regressor.predict(numpy_array)
-        answer = "median value of owner-occupied homes in $1000s :" + str(new_prediction[0])
+        answer = "median value of owner-occupied homes in $1000s : " + str(new_prediction[0])
         return answer
+
+    def calculate_weight(self, parameter_list):
+        file_path = os.path.join(self.folder_path , "data","height.joblib")
+        regressor = load(file_path)
+        organized_array = list(map(float,parameter_list))
+        numpy_array = np.array([organized_array])
+        new_prediction = regressor.predict(numpy_array)
+        rounded = round(float(new_prediction[0]) , 4)
+        answer = "Predicted Weight of the person : " + str(rounded) + " lbs"
+        return answer
+
 
 

@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<h1> Weight Prediction</h1>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<div id="weight-pred-input-form-outer" class="form-div">
+    <form method="POST" action = "">
+        {{ form.hidden_tag() }}
+        <fieldset class =  "field-set">
+            <legend> Person Details</legend>
+                
+            <div id="weight-pred-sex" class = "flexbox">
+                <div class="label">
+                    {{ form.sex.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.sex() }}
+                </div>
+
+                {% if form.sex.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.sex.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+                            
+            <div id="weight-pred-height" class = "flexbox">
+                <div class="label">
+                    {{ form.height.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.height() }}
+                </div>
+
+                {% if form.height.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.height.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </fieldset>
+        <br>
+        <div class="multi-button">
+            <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+                Home
+            </button> 
+            {{ form.submit(class="button") }}
+        
+        </div>
+        <br>
+        {% if answer %}
+        <div class="answer">
+            {{ answer }}
+        </div>
+        {% endif %}
+        </div>
+    </form>
+
+</div>
+{% endblock content %}
