@@ -18,6 +18,9 @@ EMBARKED_PORT = [("C" , "Cherbourg") , ("Q","Queenstown") , ("S","Southampton")]
 #BOSTON
 CHARLES_RIVER = [(1,"Yes") , (0,"No")]
 
+#HEIGHT
+SEX = [(0,"Male"),(1 , "Female")]
+
 class CarDetailsForm(FlaskForm):
     price = SelectField(label = "Price" , choices = PRICE , validators = [InputRequired()])
     maintenance = SelectField(label = "Maintenance Cost" , choices = MAINTENANCE_COST , validators = [InputRequired()])
@@ -50,4 +53,9 @@ class BostonDetailsForm(FlaskForm):
     ptratio = FloatField(label="pupil teacher ratio by town" , validators = [NumberRange(min=0, max=100) , InputRequired()])
     black = FloatField(label="proportion of blacks by town" , validators = [NumberRange(min=0, max=400) , InputRequired()])
     lstat = FloatField(label="lower status of the population" , validators = [NumberRange(min=0, max=100) , InputRequired()])
+    submit = SubmitField("Predict")
+
+class HeightDetailsForm(FlaskForm):
+    sex = SelectField(label = "Sex" , choices=SEX, validators = [InputRequired()])
+    height = FloatField(label="Height in cms" , validators = [NumberRange(min=10, max=350) , InputRequired()])
     submit = SubmitField("Predict")

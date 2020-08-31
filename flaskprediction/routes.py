@@ -1,7 +1,7 @@
 from flask import Flask , render_template , url_for , send_from_directory  
 from flaskprediction import app
 from flaskprediction.utils.predict import Predictor
-from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm
+from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm , HeightDetailsForm
 
 import os
 
@@ -58,3 +58,18 @@ def boston():
     else:
         message = "Select All Values"
     return render_template('boston.html' , title='boston Regressor' , form = form , message= message)
+
+
+@app.route("/height" , methods=['GET' , 'POST'])
+def height():
+    message = ""
+    form = HeightDetailsForm()
+    if form.validate_on_submit():
+        parameter_list = [form.sex.data , form.height.data]
+        predictor = Predictor()
+        answer = predictor.calculate_weight(parameter_list)
+        message = ""
+        return render_template('height.html' , title='Weight Prediction' , form = form , message= message,answer = answer)
+    else:
+        message = "Select All Values"
+    return render_template('height.html' , title='Weight Prediction' , form = form , message= message)
