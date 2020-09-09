@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import SelectField , SubmitField , StringField , DecimalField , IntegerField , FloatField
-from wtforms.validators import InputRequired , DataRequired , NumberRange
+from wtforms.validators import InputRequired , DataRequired , NumberRange, ValidationError
 
 #CAR
 PRICE = [(0,"low") , (1,"med") , (2,"high") , (3,"vhigh")]
@@ -58,4 +59,8 @@ class BostonDetailsForm(FlaskForm):
 class HeightDetailsForm(FlaskForm):
     sex = SelectField(label = "Sex" , choices=SEX, validators = [InputRequired()])
     height = FloatField(label="Height in cms" , validators = [NumberRange(min=10, max=350) , InputRequired()])
+    submit = SubmitField("Predict")
+
+class CatImageForm(FlaskForm):
+    cat_picture = FileField('Upload A picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField("Predict")

@@ -2,22 +2,13 @@
 {% block content %}
 
 <div class="multi-button home-div">
-    <button type = "button" onclick="window.location.href = '{{ url_for('car') }}';"> 
-        Car Validation Classifier
+    <button type = "button" onclick="window.location.href = '{{ url_for('classifier') }}';"> 
+        Classification Models
     </button>
     
-    <button type = "button" onclick="window.location.href = '{{ url_for('titanic') }}';"> 
-        Titanic Survival Classifier
+    <button type = "button" onclick="window.location.href = '{{ url_for('regressor') }}';"> 
+        Regression Models
     </button>
-
-    <button type = "button" onclick="window.location.href = '{{ url_for('boston') }}';"> 
-        Boston housing Regression
-    </button>
-
-    <button type = "button" onclick="window.location.href = '{{ url_for('height') }}';"> 
-        Weight Prediction Regression
-    </button>
-
 </div>
     
 {% endblock content %}

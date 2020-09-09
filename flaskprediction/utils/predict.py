@@ -1,5 +1,10 @@
+# from tensorflow.keras.preprocessing.image import load_img,img_to_array
+# from tensorflow.keras.applications.vgg16 import preprocess_input
+# from tensorflow.keras.models import Model, load_model
+from joblib import dump, load
+
+# import cv2
 import pickle
-from joblib import dump  , load
 import numpy as np
 import os
 
@@ -65,6 +70,13 @@ class Predictor:
         rounded = round(float(new_prediction[0]) , 4)
         answer = "Predicted Weight of the person : " + str(rounded) + " lbs"
         return answer
+
+    def find_cat(self, picture):
+        file_path = os.path.join(self.folder_path , "data","cat_or_not_cat.h5")
+        print('jher;;')
+        print(picture)
+        #DUMMY IMPLEMENTATION
+        return "<DUMMY ANSWER> The picture is not a CAT"
 
 
 

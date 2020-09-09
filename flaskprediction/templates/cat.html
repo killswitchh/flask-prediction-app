@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<h1> Weight Prediction</h1>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<div id="weight-pred-input-form-outer" class="form-div">
+    <form method="POST" action = "">
+        {{ form.hidden_tag() }}
+        <fieldset class =  "field-set">
+            <legend> Find Cat </legend>
+                                            
+            <div id="cat-image" class = "flexbox">
+                <div class="label">
+                    {{ form.cat_picture.label ()}}
+                </div>
+                <div class="field">
+                    {{ form.cat_picture() }}
+                </div>
+
+                {% if form.cat_picture.errors %}               
+                <div id = "errors" class = "errors">
+                    {% for error in form.cat_picture.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </fieldset>
+        <br>
+        <div class="multi-button">
+            <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+                Home
+            </button> 
+            {{ form.submit(class="button") }}
+        
+        </div>
+        <br>
+        {% if answer %}
+        <div class="answer">
+            {{ answer }}
+        </div>
+        {% endif %}
+        </div>
+    </form>
+
+</div>
+{% endblock content %}
