@@ -4,7 +4,7 @@ from flask import Flask , render_template , url_for , send_from_directory
 from flaskprediction import app
 from flaskprediction.utils.predict import Predictor
 from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm , HeightDetailsForm, CatImageForm
-# from PIL import Image
+from PIL import Image
 
 import os
 
@@ -26,7 +26,7 @@ def regressor():
     return render_template('regression.html')
 
 
-@app.route("/titanic", methods=['GET' , 'POST'])
+@app.route("/classifier/titanic", methods=['GET' , 'POST'])
 def titanic():
     message = ""
     form = TitanicDetailsForm()
@@ -41,7 +41,7 @@ def titanic():
         message = "Enter Passenger Details"
     return render_template('titanic.html' , title='Titanic Classifier' , form = form , message= message)
 
-@app.route("/car" , methods=['GET' , 'POST'])
+@app.route("/classifier/car" , methods=['GET' , 'POST'])
 def car():
     message = ""
     form = CarDetailsForm()
@@ -57,7 +57,7 @@ def car():
 
 
 
-@app.route("/boston" , methods=['GET' , 'POST'])
+@app.route("/regressor/boston" , methods=['GET' , 'POST'])
 def boston():
     message = ""
     form = BostonDetailsForm()
@@ -72,7 +72,7 @@ def boston():
     return render_template('boston.html' , title='boston Regressor' , form = form , message= message)
 
 
-@app.route("/height" , methods=['GET' , 'POST'])
+@app.route("/regressor/height" , methods=['GET' , 'POST'])
 def height():
     message = ""
     form = HeightDetailsForm()
@@ -99,12 +99,17 @@ def save_picture(form_picture):
 
     return picture_fn
 
-@app.route("/cat" , methods=['GET' , 'POST'])
+@app.route("/classifier/cat" , methods=['GET' , 'POST'])
 def cat():
     message = ""
+    
     form = CatImageForm()
     if form.validate_on_submit():
         picture_file = form.cat_picture.data
+        bytes_file = picture_file.read()
+        
+        # image_file = Image.open(picture_file)
+        
         predictor = Predictor()
         answer = predictor.find_cat(picture_file)
         message = ""

@@ -1,6 +1,6 @@
-# from tensorflow.keras.preprocessing.image import load_img,img_to_array
-# from tensorflow.keras.applications.vgg16 import preprocess_input
-# from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.preprocessing.image import load_img,img_to_array
+from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.models import Model, load_model
 from joblib import dump, load
 
 # import cv2
@@ -62,6 +62,7 @@ class Predictor:
         return answer
 
     def calculate_weight(self, parameter_list):
+
         file_path = os.path.join(self.folder_path , "data","height.joblib")
         regressor = load(file_path)
         organized_array = list(map(float,parameter_list))
@@ -71,12 +72,23 @@ class Predictor:
         answer = "Predicted Weight of the person : " + str(rounded) + " lbs"
         return answer
 
+    @staticmethod
+    def cat_preprocess_image(img):
+        new_size = (64,64)
+        loaded = load_img(img,target_size=new_size)
+        preprocessed_image = preprocess_input(loaded)
+        preprocessed_image = np.expand_dims(preprocessed_image, 0)
+
+        return preprocessed_image
+
     def find_cat(self, picture):
         file_path = os.path.join(self.folder_path , "data","cat_or_not_cat.h5")
-        print('jher;;')
-        print(picture)
-        #DUMMY IMPLEMENTATION
-        return "<DUMMY ANSWER> The picture is not a CAT"
+        # image = self.cat_preprocess_image(picture)
+        cat_model = load_model(file_path)        
+
+        # prediction = cat_model.predict(image)
+        
+        return f"<DUMMY ANSWER> The picture is not a CAT {file_path}"
 
 
 
