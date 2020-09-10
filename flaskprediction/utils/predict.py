@@ -3,7 +3,6 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.models import Model, load_model
 from joblib import dump, load
 
-# import cv2
 import pickle
 import numpy as np
 import os
@@ -76,19 +75,22 @@ class Predictor:
     def cat_preprocess_image(img):
         new_size = (64,64)
         loaded = load_img(img,target_size=new_size)
-        preprocessed_image = preprocess_input(loaded)
+        res = img_to_array(loaded)
+        preprocessed_image = preprocess_input(res)
         preprocessed_image = np.expand_dims(preprocessed_image, 0)
 
         return preprocessed_image
 
     def find_cat(self, picture):
         file_path = os.path.join(self.folder_path , "data","cat_or_not_cat.h5")
-        # image = self.cat_preprocess_image(picture)
-        cat_model = load_model(file_path)        
-
-        # prediction = cat_model.predict(image)
         
-        return f"<DUMMY ANSWER> The picture is not a CAT {file_path}"
+        image = self.cat_preprocess_image(picture)
+        cat_model = load_model(file_path)        
+        
+        prediction = cat_model.predict(image)
+        answer = "has a cat" if prediction[0][0] == 0 else "does not have a cat"
+        os.remove(picture)
+        return f"The picture {answer}"
 
 
 

@@ -90,14 +90,13 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-
-    output_size = (125, 125)
+    picture_path = os.path.join(app.root_path, 'static/pics', picture_fn)
+    output_size = (64, 64)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
 
-    return picture_fn
+    return picture_path
 
 @app.route("/classifier/cat" , methods=['GET' , 'POST'])
 def cat():
@@ -106,12 +105,10 @@ def cat():
     form = CatImageForm()
     if form.validate_on_submit():
         picture_file = form.cat_picture.data
-        bytes_file = picture_file.read()
         
-        # image_file = Image.open(picture_file)
-        
+        image_file = save_picture(picture_file)
         predictor = Predictor()
-        answer = predictor.find_cat(picture_file)
+        answer = predictor.find_cat(image_file)
         message = ""
         return render_template('cat.html' , title='Cat Prediction' , form = form , message= message,answer = answer)
     else:
