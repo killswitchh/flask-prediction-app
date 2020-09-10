@@ -1,7 +1,10 @@
+import secrets
+
 from flask import Flask , render_template , url_for , send_from_directory  
 from flaskprediction import app
 from flaskprediction.utils.predict import Predictor
-from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm , HeightDetailsForm
+from flaskprediction.forms import CarDetailsForm , TitanicDetailsForm , BostonDetailsForm , HeightDetailsForm, CatImageForm
+from PIL import Image
 
 import os
 
@@ -14,7 +17,16 @@ def favicon():
 def home():
     return render_template('home.html')
 
-@app.route("/titanic", methods=['GET' , 'POST'])
+@app.route("/classifier", methods=['GET' , 'POST'])
+def classifier():
+    return render_template('classification.html')
+
+@app.route("/regressor", methods=['GET' , 'POST'])
+def regressor():
+    return render_template('regression.html')
+
+
+@app.route("/classifier/titanic", methods=['GET' , 'POST'])
 def titanic():
     message = ""
     form = TitanicDetailsForm()
@@ -29,7 +41,7 @@ def titanic():
         message = "Enter Passenger Details"
     return render_template('titanic.html' , title='Titanic Classifier' , form = form , message= message)
 
-@app.route("/car" , methods=['GET' , 'POST'])
+@app.route("/classifier/car" , methods=['GET' , 'POST'])
 def car():
     message = ""
     form = CarDetailsForm()
@@ -45,7 +57,7 @@ def car():
 
 
 
-@app.route("/boston" , methods=['GET' , 'POST'])
+@app.route("/regressor/boston" , methods=['GET' , 'POST'])
 def boston():
     message = ""
     form = BostonDetailsForm()
@@ -60,7 +72,7 @@ def boston():
     return render_template('boston.html' , title='boston Regressor' , form = form , message= message)
 
 
-@app.route("/height" , methods=['GET' , 'POST'])
+@app.route("/regressor/height" , methods=['GET' , 'POST'])
 def height():
     message = ""
     form = HeightDetailsForm()
@@ -73,3 +85,32 @@ def height():
     else:
         message = "Select All Values"
     return render_template('height.html' , title='Weight Prediction' , form = form , message= message)
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/pics', picture_fn)
+    output_size = (64, 64)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_path
+
+@app.route("/classifier/cat" , methods=['GET' , 'POST'])
+def cat():
+    message = ""
+    
+    form = CatImageForm()
+    if form.validate_on_submit():
+        picture_file = form.cat_picture.data
+        
+        image_file = save_picture(picture_file)
+        predictor = Predictor()
+        answer = predictor.find_cat(image_file)
+        message = ""
+        return render_template('cat.html' , title='Cat Prediction' , form = form , message= message,answer = answer)
+    else:
+        message = "Upload A Picture"
+    return render_template('cat.html' , title='Cat Prediction' , form = form , message= message)

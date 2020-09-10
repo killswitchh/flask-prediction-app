@@ -1,5 +1,9 @@
+from tensorflow.keras.preprocessing.image import load_img,img_to_array
+from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.models import Model, load_model
+from joblib import dump, load
+
 import pickle
-from joblib import dump  , load
 import numpy as np
 import os
 
@@ -57,6 +61,7 @@ class Predictor:
         return answer
 
     def calculate_weight(self, parameter_list):
+
         file_path = os.path.join(self.folder_path , "data","height.joblib")
         regressor = load(file_path)
         organized_array = list(map(float,parameter_list))
@@ -65,6 +70,27 @@ class Predictor:
         rounded = round(float(new_prediction[0]) , 4)
         answer = "Predicted Weight of the person : " + str(rounded) + " lbs"
         return answer
+
+    @staticmethod
+    def cat_preprocess_image(img):
+        new_size = (64,64)
+        loaded = load_img(img,target_size=new_size)
+        res = img_to_array(loaded)
+        preprocessed_image = preprocess_input(res)
+        preprocessed_image = np.expand_dims(preprocessed_image, 0)
+
+        return preprocessed_image
+
+    def find_cat(self, picture):
+        file_path = os.path.join(self.folder_path , "data","cat_or_not_cat.h5")
+        
+        image = self.cat_preprocess_image(picture)
+        cat_model = load_model(file_path)        
+        
+        prediction = cat_model.predict(image)
+        answer = "has a cat" if prediction[0][0] == 0 else "does not have a cat"
+        os.remove(picture)
+        return f"The picture {answer}"
 
 
 

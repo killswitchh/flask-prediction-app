@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import SelectField , SubmitField , StringField , DecimalField , IntegerField , FloatField
-from wtforms.validators import InputRequired , DataRequired , NumberRange
+from wtforms.validators import InputRequired , DataRequired , NumberRange, ValidationError
 
 #CAR
 PRICE = [(0,"low") , (1,"med") , (2,"high") , (3,"vhigh")]
@@ -10,16 +11,7 @@ NO_OF_DOORS = [(2,"2") , (3,"3") ,(4,"4") , (5,"5 or more")]
 CAPACITY = [(2,"2"),(4,"4"),(5,"more")]
 SIZE_OF_LUGGAGE_BOOT = [(0,"small") , (1,"med") ,(2,"big")]
 
-#TITANIC
-PASSENGER_CLASS = [(1,"Class 1"),(2,"Class 2"),(3,"Class 3")]
-PASSENGER_SEX = [("male","Male"),("female" , "Female")]
-EMBARKED_PORT = [("C" , "Cherbourg") , ("Q","Queenstown") , ("S","Southampton")]
 
-#BOSTON
-CHARLES_RIVER = [(1,"Yes") , (0,"No")]
-
-#HEIGHT
-SEX = [(0,"Male"),(1 , "Female")]
 
 class CarDetailsForm(FlaskForm):
     price = SelectField(label = "Price" , choices = PRICE , validators = [InputRequired()])
@@ -29,6 +21,12 @@ class CarDetailsForm(FlaskForm):
     no_of_doors = SelectField(label = "Luggage Boot Size" , choices = NO_OF_DOORS , validators = [InputRequired()])
     safety = SelectField(label = "Safety" , choices = SAFETY , validators = [InputRequired()])
     submit = SubmitField("Predict")
+
+#TITANIC
+PASSENGER_CLASS = [(1,"Class 1"),(2,"Class 2"),(3,"Class 3")]
+PASSENGER_SEX = [("male","Male"),("female" , "Female")]
+EMBARKED_PORT = [("C" , "Cherbourg") , ("Q","Queenstown") , ("S","Southampton")]
+
 
 class TitanicDetailsForm(FlaskForm):
     p_id = IntegerField(label="Passenger ID", validators=[InputRequired()])
@@ -41,6 +39,10 @@ class TitanicDetailsForm(FlaskForm):
     fare = FloatField(label="Ticket Fare", validators = [NumberRange(min=0, max=1000) , InputRequired()])
     embarked = SelectField(label="Embarked from", choices=EMBARKED_PORT , validators = [InputRequired()])
     submit = SubmitField("Predict")
+
+#BOSTON
+CHARLES_RIVER = [(1,"Yes") , (0,"No")]
+
 
 class BostonDetailsForm(FlaskForm):
     crim = FloatField(label="Per Capita Crime rate" , validators = [NumberRange(min=0, max=100) , InputRequired()])
@@ -55,7 +57,14 @@ class BostonDetailsForm(FlaskForm):
     lstat = FloatField(label="lower status of the population" , validators = [NumberRange(min=0, max=100) , InputRequired()])
     submit = SubmitField("Predict")
 
+#HEIGHT
+SEX = [(0,"Male"),(1 , "Female")]
+
 class HeightDetailsForm(FlaskForm):
     sex = SelectField(label = "Sex" , choices=SEX, validators = [InputRequired()])
     height = FloatField(label="Height in cms" , validators = [NumberRange(min=10, max=350) , InputRequired()])
+    submit = SubmitField("Predict")
+
+class CatImageForm(FlaskForm):
+    cat_picture = FileField(label='Upload A picture',validators=[FileAllowed(['jpg', 'png']) , FileRequired("File Empty")])
     submit = SubmitField("Predict")

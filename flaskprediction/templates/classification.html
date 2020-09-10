@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="multi-button home-div">
+    <button type = "button" onclick="window.location.href = '{{ url_for('car') }}';"> 
+        Car Validation Classifier
+    </button>
+    
+    <button type = "button" onclick="window.location.href = '{{ url_for('titanic') }}';"> 
+        Titanic Survival Classifier
+    </button>
+
+    <button type = "button" onclick="window.location.href = '{{ url_for('cat') }}';"> 
+        Cat Detection
+    </button>
+</div>
+<div class="multi-button">
+    <button type = "button" onclick="window.location.href = '{{ url_for('home') }}';"> 
+        Home
+    </button> 
+</div>
+
+{% endblock content %}
